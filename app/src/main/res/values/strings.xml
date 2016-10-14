@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TablaDinamica</string>
+    <string name="txvId">ID</string>
+    <string name="txvName">Nombre</string>
+    <string-array name="listName">
+        <item>Daniel Acedo</item>
+        <item>María García</item>
+        <item>Laura Durán</item>
+        <item>Juan Borromeo</item>
+    </string-array>
+</resources>
