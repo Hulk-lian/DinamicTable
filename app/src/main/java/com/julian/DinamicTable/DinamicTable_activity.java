@@ -2,6 +2,7 @@ package com.julian.DinamicTable;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,6 +15,9 @@ public class DinamicTable_activity extends AppCompatActivity {
     private TableRow.LayoutParams tbrLayoutId;
     private TableRow.LayoutParams tbrLayoutName;
 
+    private TableRow tbrHeader;
+    private TableRow tbrBody;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,7 @@ public class DinamicTable_activity extends AppCompatActivity {
         tbrLayoutId= new TableRow.LayoutParams(100,TableRow.LayoutParams.WRAP_CONTENT);
         tbrLayoutId.setMargins(0,10,0,10);
         tbrLayoutName= new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.WRAP_CONTENT);
+        tbrLayoutName.setMargins(0,10,0,10);
 
         createHeader();
         createBody();
@@ -32,32 +37,52 @@ public class DinamicTable_activity extends AppCompatActivity {
     }
 
     private void createHeader() {
-        TableRow tbrHeader = new TableRow(this);
+
+        tbrHeader = new TableRow(this);
 
         TextView txvId= new TextView(this);
         txvId.setText(R.string.txvId);
         txvId.setLayoutParams(tbrLayoutId);
-        tbrHeader.addView(txvId);
+        txvId.setBackgroundResource(R.drawable.shape_header);
+        txvId.setGravity(Gravity.CENTER);
 
         TextView txvNombre= new TextView(this);
         txvNombre.setText(R.string.txvName);
         txvNombre.setLayoutParams(tbrLayoutName);
-        tbrHeader.addView(tbrHeader);
+        txvNombre.setBackgroundResource(R.drawable.shape_header);
+        txvId.setGravity(Gravity.CENTER);
+
+        tbrHeader.addView(txvId);
+        tbrHeader.addView(txvNombre);
 
         tblHeader.addView(tbrHeader);
 
     }
 
     private void createBody(){
-        TableRow tbrBody;
 
-        TextView txvId= new TextView(this);
-        TextView txvName= new TextView(this);
+        TextView txvId;
+        TextView txvName;
 
         String[] listname= getResources().getStringArray(R.array.listName);
 
         for (int i=0; i <listname.length;i++){
+
             tbrBody= new TableRow(this);
+
+            txvId= new TextView(this);
+            txvId.setText(" "+(i+1)+" ");
+            txvId.setLayoutParams(tbrLayoutId);
+
+            txvName= new TextView(this);
+            txvName.setText(listname[i]);
+            txvName.setLayoutParams(tbrLayoutName);
+
+
+            tbrBody.addView(txvId);
+            tbrBody.addView(txvName);
+
+            tblBody.addView(tbrBody);
         }
 
     }
